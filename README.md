@@ -1,13 +1,17 @@
-*Console Task Manager*
+# Console Task Manager
 
 A simple Python console application to manage tasks.
 
-Technologies:
+## Features
+- Add tasks
+- View tasks
+- Mark tasks as completed
+- Exit the program
 
+## Technologies
 - Python
 
-Purpose:
-
+## Purpose
 Built to practice programming fundamentals such as loops,
 conditionals, data structures, and user input handling.
 
