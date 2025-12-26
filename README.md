@@ -15,4 +15,9 @@ A simple Python console application to manage tasks.
 Built to practice programming fundamentals such as loops,
 conditionals, data structures, and user input handling.
 
+## Improvements
+- Refactored code into reusable functions
+- Added input validation for task completion
+
+
 
