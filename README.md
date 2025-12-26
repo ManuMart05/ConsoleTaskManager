@@ -18,6 +18,6 @@ conditionals, data structures, and user input handling.
 ## Improvements
 - Refactored code into reusable functions
 - Added input validation for task completion
-
+- Delete tasks safely with input validation
 
 
