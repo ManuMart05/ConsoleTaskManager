@@ -32,7 +32,8 @@ def show_menu():
     print("1. Add task")
     print("2. View tasks")
     print("3. Mark task as completed")
-    print("4. Exit")
+    print("4. Delete task")
+    print("5. Exit")
 
 
 def add_task():
@@ -66,9 +67,20 @@ def complete_task():
     except ValueError:
         print("Please enter a valid number.")
 
+def delete_task():
+    """Delete a task by number."""
+    try:
+        task_number = int(input("Enter task number to delete: "))
+        if 1 <= task_number <= len(tasks):
+            removed = tasks.pop(task_number - 1)
+            save_tasks()
+            print(f"Deleted task: {removed['description']}")
+        else:
+            print("Invalid task number.")
+    except ValueError:
+        print("Please enter a valid number.")
 
 def main():
-    """Main application loop."""
     load_tasks()
 
     while True:
@@ -82,11 +94,12 @@ def main():
         elif choice == "3":
             complete_task()
         elif choice == "4":
+            delete_task()
+        elif choice == "5":
             print("Goodbye!")
             break
         else:
             print("Invalid option.")
-
 
 if __name__ == "__main__":
     main()
