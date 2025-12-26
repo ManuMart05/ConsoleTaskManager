@@ -1,11 +1,33 @@
 # Simple Task Manager
-# Refactored version using functions
+# This program allows the user to add tasks, view them,
+# mark tasks as completed, and exit the program.
 
+# List to store all tasks
+
+import json
+
+FILE_NAME = "tasks.json"
 tasks = []
 
 
+def load_tasks():
+    """Load tasks from a JSON file if it exists and is valid."""
+    global tasks
+    try:
+        with open(FILE_NAME, "r") as file:
+            tasks = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        tasks = []
+
+
+def save_tasks():
+    """Save tasks to a JSON file."""
+    with open(FILE_NAME, "w") as file:
+        json.dump(tasks, file, indent=4)
+
+
 def show_menu():
-    """Displays the main menu options."""
+    """Display the main menu."""
     print("\nTask Manager")
     print("1. Add task")
     print("2. View tasks")
@@ -14,14 +36,15 @@ def show_menu():
 
 
 def add_task():
-    """Adds a new task to the task list."""
+    """Add a new task."""
     description = input("Enter task description: ")
     tasks.append({"description": description, "done": False})
+    save_tasks()
     print("Task added.")
 
 
 def view_tasks():
-    """Displays all tasks with their status."""
+    """View all tasks."""
     if not tasks:
         print("No tasks yet.")
     else:
@@ -31,11 +54,12 @@ def view_tasks():
 
 
 def complete_task():
-    """Marks a selected task as completed."""
+    """Mark a task as completed."""
     try:
         task_number = int(input("Enter task number: "))
         if 1 <= task_number <= len(tasks):
             tasks[task_number - 1]["done"] = True
+            save_tasks()
             print("Task marked as completed.")
         else:
             print("Invalid task number.")
@@ -44,7 +68,9 @@ def complete_task():
 
 
 def main():
-    """Main program loop."""
+    """Main application loop."""
+    load_tasks()
+
     while True:
         show_menu()
         choice = input("Choose an option: ")
@@ -62,6 +88,5 @@ def main():
             print("Invalid option.")
 
 
-# Program entry point
-main()
-
+if __name__ == "__main__":
+    main()
